@@ -1,199 +1,272 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="utf-8">
-    <title>Cobrança Oficial do Recitativo 😇💥</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cobrança Oficial do Recitativo 😇</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:ital,wght@0,400;0,600;0,800;1,400&display=swap');
 
-    <style>
-        body {
-            margin: 0;
-            font-family: "Comic Sans MS", Tahoma, sans-serif;
-            background: radial-gradient(circle at center, #0b1020 0%, #05070f 70%);
-            color: white;
-            overflow-x: hidden;
-        }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* Emojis caindo infinitamente */
-        .falling-emoji {
-            position: fixed;
-            top: -50px;
-            font-size: 32px;
-            z-index: 1;
-            animation: fall linear infinite;
-            opacity: 0.92;
-            pointer-events: none;
-        }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: #0f1b2d;
+    color: #e8f0fe;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-        @keyframes fall {
-            0% {
-                transform: translateY(-50px) rotate(0deg);
-            }
+  .emoji-bg { position:fixed; inset:0; pointer-events:none; z-index:1; overflow:hidden; }
+  .drop {
+    position:absolute; top:-60px; font-size:28px;
+    animation: falldown linear infinite;
+    opacity:.85;
+  }
+  @keyframes falldown { to { transform: translateY(110vh) rotate(360deg); } }
 
-            100% {
-                transform: translateY(110vh) rotate(360deg);
-            }
-        }
+  .page {
+    position:relative; z-index:10;
+    max-width:780px; margin:0 auto;
+    padding:40px 20px 60px;
+  }
 
-        /* container central */
-        .wrapper {
-            position: relative;
-            z-index: 10;
-            max-width: 850px;
-            margin: 60px auto;
-            text-align: center;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.06);
-            border-radius: 18px;
-            box-shadow: 0 0 24px rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(3px);
-        }
+  .verse-top {
+    background: rgba(255,255,255,0.06);
+    border-left: 4px solid #fbbf24;
+    border-radius: 0 10px 10px 0;
+    padding: 12px 18px;
+    margin-bottom: 36px;
+    font-style: italic;
+    font-size: 14px;
+    color: #fde68a;
+    line-height: 1.6;
+  }
+  .verse-top cite { font-style:normal; font-weight:800; display:block; margin-top:4px; font-size:13px; color:#fbbf24; }
 
-        h1 {
-            font-size: 40px;
-            text-shadow: 0 0 12px #00ffee;
-            margin-bottom: 15px;
-        }
+  .header { text-align:center; margin-bottom:32px; }
+  .badge {
+    display:inline-block;
+    background:#fbbf24; color:#0f1b2d;
+    font-size:11px; font-weight:800; letter-spacing:2px; text-transform:uppercase;
+    padding:4px 14px; border-radius:20px; margin-bottom:16px;
+  }
+  .header h1 {
+    font-family:'Fredoka One', sans-serif;
+    font-size: clamp(28px, 7vw, 52px);
+    line-height:1.1;
+    color:#fff;
+    text-shadow: 0 0 40px rgba(251,191,36,0.3);
+    margin-bottom:10px;
+  }
+  .header h1 .highlight { color:#fbbf24; }
+  .header .sub { font-size:16px; color:rgba(232,240,254,0.6); font-style:italic; }
 
-        .subtitle {
-            font-size: 20px;
-            font-weight: bold;
-            color: #ffd166;
-            margin-bottom: 20px;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
-        }
+  .card {
+    background: rgba(255,255,255,0.07);
+    border: 1.5px solid rgba(251,191,36,0.2);
+    border-radius:18px;
+    padding:28px 28px;
+    margin-bottom:20px;
+  }
 
-        .big-warning {
-            font-size: 32px;
-            color: #ff4d6d;
-            font-weight: 900;
-            text-shadow: 0 0 10px rgba(255, 100, 130, 0.8);
-            animation: pulse 1.4s infinite;
-        }
+  .big-alert {
+    font-family:'Fredoka One', sans-serif;
+    font-size: clamp(22px, 5vw, 36px);
+    color:#f87171;
+    text-align:center;
+    line-height:1.2;
+    margin-bottom:20px;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.04)} }
 
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
+  .body-text {
+    font-size:16px; line-height:1.8;
+    color:rgba(232,240,254,0.85);
+    text-align:center; margin-bottom:20px;
+  }
+  .body-text strong { color:#fff; }
 
-            50% {
-                transform: scale(1.05);
-            }
+  .countdown {
+    background:rgba(0,0,0,0.25);
+    border:1px dashed rgba(251,191,36,0.3);
+    border-radius:12px;
+    padding:18px;
+    text-align:center;
+    margin-bottom:20px;
+  }
+  .cd-label { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(251,191,36,0.6); margin-bottom:10px; }
+  .cd-row { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
+  .cd-box {
+    background:rgba(251,191,36,0.12);
+    border-radius:8px; padding:10px 14px;
+    min-width:60px; text-align:center;
+  }
+  .cd-num { font-family:'Fredoka One',sans-serif; font-size:32px; color:#fbbf24; line-height:1; }
+  .cd-unit { font-size:10px; letter-spacing:1px; text-transform:uppercase; color:rgba(232,240,254,0.4); margin-top:2px; }
 
-            100% {
-                transform: scale(1);
-            }
-        }
+  .urgency { margin-bottom:8px; }
+  .urgency-label { font-size:12px; color:rgba(232,240,254,0.5); margin-bottom:6px; }
+  .bar-bg { background:rgba(255,255,255,0.08); border-radius:6px; height:10px; overflow:hidden; }
+  .bar-fill { height:100%; border-radius:6px; background:linear-gradient(90deg,#fbbf24,#f87171); transition:width 2s ease; }
+  .urgency-msg { font-size:13px; font-style:italic; color:#fbbf24; margin-top:6px; }
 
-        .verses {
-            margin-top: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px;
-            border-radius: 12px;
-        }
+  .verses-title {
+    font-family:'Fredoka One',sans-serif;
+    font-size:22px; color:#7dd3fc;
+    text-align:center; margin-bottom:16px;
+  }
+  .verse-item {
+    border-left:3px solid rgba(125,211,252,0.4);
+    padding:10px 14px;
+    margin-bottom:10px;
+    background:rgba(125,211,252,0.05);
+    border-radius:0 8px 8px 0;
+    font-size:14px; font-style:italic;
+    color:rgba(232,240,254,0.75);
+    line-height:1.7;
+  }
+  .verse-item cite { font-style:normal; font-size:12px; color:#7dd3fc; font-weight:800; display:block; margin-top:4px; }
 
-        .verse {
-            margin: 10px 0;
-            font-size: 16px;
-            line-height: 1.4;
-        }
+  footer {
+    text-align:center; margin-top:40px;
+    font-size:13px; color:rgba(232,240,254,0.3); line-height:1.9;
+  }
+  footer a { color:rgba(251,191,36,0.5); text-decoration:none; }
+  footer a:hover { color:#fbbf24; }
 
-        .gif-area {
-            margin-top: 24px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .gif-area img {
-            /* width:120px;
-    height:120px; */
-            object-fit: cover;
-            border-radius: 12px;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        footer {
-            margin-top: 40px;
-            opacity: 0.8;
-            font-size: 14px;
-        }
-    </style>
+  @keyframes fadein { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:none} }
+  .page>*{animation:fadein .5s ease both}
+  .verse-top{animation-delay:.05s}.header{animation-delay:.15s}
+  .card{animation-delay:.25s}.card+.card{animation-delay:.35s}
+  footer{animation-delay:.45s}
+</style>
 </head>
-
 <body>
 
-    <div id="emoji-container"></div>
+<div class="emoji-bg" id="emojis"></div>
 
-    <div class="wrapper">
-        <h1>⚠️ ATENÇÃO AUXILIAR DOS JOVENS ⚠️</h1>
+<div class="page">
 
-        <div class="subtitle">A Congregação (e o céu) estão aguardando…</div>
+  <div class="verse-top">
+    "Consagre ao Senhor tudo o que você faz, e os seus planos serão bem-sucedidos."
+    <cite>— Provérbios 16:3</cite>
+  </div>
 
-        <div class="big-warning">
-            📢 **CADÊ O RECITATIVO DA PRÓXIMA SEMANA?!** 😅
-        </div>
+  <div class="header">
+    <div class="badge">⚠️ Aviso Oficial da Mocidade · CCB</div>
+    <h1>Cadê o <span class="highlight">recitativo</span>?! 😅</h1>
+    <p class="sub">A congregação (e o céu) estão esperando…</p>
+  </div>
 
-        <img src="./assets/Screenshot 2025-12-06 232220.png" style="margin-top:20px;border-radius:12px;" width="200px" height="200px">
+  <div class="card">
+    <div class="big-alert">📢 AUXILIAR DOS JOVENS, APARECE!</div>
 
-        <p style="margin-top:20px;font-size:18px;">
-            Este é um lembrete carinhoso (mas firme 😇) para você<br>
-            <strong>enviar o recitativo</strong> da próxima semana para o grupo!<br>
-            <br>
-            <em>"Não esquece não, irmão... a mocidade depende de você!"</em>
-        </p>
+    <p class="body-text">
+      Este é um lembrete <strong>carinhoso</strong> (mas firme 😇)<br>
+      pra você enviar o recitativo da próxima semana pro grupo!<br><br>
+      <em>"Não esquece não, irmão… a mocidade depende de você!"</em>
+    </p>
 
-        <div class="verses">
-            <div class="verse">“Escondi a tua palavra no meu coração, para não pecar contra ti.” — Salmos 119:11</div>
-            <div class="verse">“A palavra de Cristo habite em vós abundantemente...” — Colossenses 3:16</div>
-            <div class="verse">“Procura apresentar-te a Deus aprovado...” — 2 Timóteo 2:15</div>
-        </div>
-
-        <h2 style="margin-top:30px;color:#73f7ff;text-shadow:0 0 10px #00f7ff;">
-            GIFs motivacionais para te lembrar 😇
-        </h2>
-        <div class="gif-area">
-            <img src="./assets/20-53-36-668_256.gif">
-            <img src="./assets/God Meme.gif">
-            <img src="./assets/he-is-risen.gif" width="100%" height="100%">
-            <img src="./assets/wwjd-christian.gif">
-        </div>
-
-        <footer>
-            Feito com amor, humor e responsabilidade espiritual 💛<br>
-            Versão “Cobrança Anos 2000” ✨<br>
-            Contribua, faça um PR no <a href="https://github.com/Logikoz/recitativos-ccb">Github</a>
-        </footer>
+    <div class="countdown">
+      <div class="cd-label">⏳ Próximo domingo às 9h em</div>
+      <div class="cd-row">
+        <div class="cd-box"><div class="cd-num" id="cd-d">--</div><div class="cd-unit">dias</div></div>
+        <div class="cd-box"><div class="cd-num" id="cd-h">--</div><div class="cd-unit">horas</div></div>
+        <div class="cd-box"><div class="cd-num" id="cd-m">--</div><div class="cd-unit">min</div></div>
+        <div class="cd-box"><div class="cd-num" id="cd-s">--</div><div class="cd-unit">seg</div></div>
+      </div>
     </div>
 
+    <div class="urgency">
+      <div class="urgency-label">Nível de preocupação espiritual da turma 🙏</div>
+      <div class="bar-bg"><div class="bar-fill" id="urgency-bar" style="width:0%"></div></div>
+      <div class="urgency-msg" id="urgency-msg">Calculando o peso da responsabilidade…</div>
+    </div>
+  </div>
 
-    <script>
-        /* LOOP INFINITO DE EMOJIS CAINDO */
-        const EMOJIS = ["✨", "🎉", "😇", "🙏", "💥", "📖", "🌟"];
-        const container = document.getElementById("emoji-container");
+  <div class="card">
+    <div class="verses-title">📖 Palavras que te lembram do dever</div>
+    <div class="verse-item">
+      "Esconde a tua palavra no meu coração, para que eu não peque contra ti."
+      <cite>Salmos 119:11</cite>
+    </div>
+    <div class="verse-item">
+      "A palavra de Cristo habite em vós abundantemente, em toda a sabedoria."
+      <cite>Colossenses 3:16</cite>
+    </div>
+    <div class="verse-item">
+      "Procura apresentar-te a Deus aprovado, como obreiro que não tem de que se envergonhar."
+      <cite>2 Timóteo 2:15</cite>
+    </div>
+  </div>
 
-        function spawnEmoji() {
-            const e = document.createElement("div");
-            e.className = "falling-emoji";
-            e.textContent = EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
-            e.style.left = Math.random() * 100 + "vw";
-            e.style.animationDuration = (4 + Math.random() * 4) + "s";
+  <footer>
+    Feito com amor, humor e responsabilidade espiritual 💛<br>
+    Versão "Cobrança Anos 2000" ✨ —
+    <a href="https://github.com/Logikoz/recitativos-ccb" target="_blank">GitHub</a>
+  </footer>
+</div>
 
-            container.appendChild(e);
+<script>
+const EMOJIS = ["✨","🎉","😇","🙏","💥","📖","🌟"];
+const cont = document.getElementById('emojis');
+function spawnEmoji() {
+  const el = document.createElement('div');
+  el.className = 'drop';
+  el.textContent = EMOJIS[Math.floor(Math.random()*EMOJIS.length)];
+  el.style.left = (Math.random()*100)+'vw';
+  el.style.animationDuration = (4+Math.random()*5)+'s';
+  cont.appendChild(el);
+  setTimeout(()=>el.remove(), 10000);
+}
+setInterval(spawnEmoji, 280);
+for(let i=0;i<18;i++) spawnEmoji();
 
-            // Remove quando terminar
-            setTimeout(() => e.remove(), 9000);
-        }
+function pad(n){ return String(n).padStart(2,'0'); }
 
-        // cria emojis continuamente
-        setInterval(spawnEmoji, 250); // caiu emoji a cada 0.25s
+function nextSunday9am() {
+  const now = new Date();
+  const d = new Date(now);
+  // day 0 = domingo
+  const day = d.getDay();
+  const diff = (7 - day) % 7 || 7; // dias até próximo domingo (nunca 0)
+  d.setDate(d.getDate() + diff);
+  d.setHours(9, 0, 0, 0);
+  return d;
+}
 
-        // Gera um lote inicial
-        for (let i = 0; i < 20; i++) spawnEmoji();
-    </script>
+const URGENCY_MSGS = [
+  [0,  25, "Tá tranquilo… até demais. 😌"],
+  [25, 50, "Já dá pra pensar nisso, hein irmão. 🤔"],
+  [50, 70, "Irmão… tá ficando sério. 😬"],
+  [70, 88, "URGENTE! O grupo tá ansioso! 😰"],
+  [88,101, "🔴 CRÍTICO! O wi-fi da congregação aguarda! 😱"],
+];
 
+function tick() {
+  const target = nextSunday9am();
+  const now = new Date();
+  const ms = Math.max(0, target - now);
+  const s = Math.floor(ms/1000);
+  const m = Math.floor(s/60);
+  const h = Math.floor(m/60);
+  const dv = Math.floor(h/24);
+  document.getElementById('cd-d').textContent = pad(dv);
+  document.getElementById('cd-h').textContent = pad(h%24);
+  document.getElementById('cd-m').textContent = pad(m%60);
+  document.getElementById('cd-s').textContent = pad(s%60);
+
+  const total = 7*24*3600*1000;
+  const pct = Math.min(100, Math.round((1 - ms/total)*100));
+  document.getElementById('urgency-bar').style.width = pct+'%';
+  for(const [lo,hi,msg] of URGENCY_MSGS){
+    if(pct>=lo && pct<hi){ document.getElementById('urgency-msg').textContent=msg; break; }
+  }
+}
+tick();
+setInterval(tick,1000);
+</script>
 </body>
-
 </html>
